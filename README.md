@@ -7,6 +7,10 @@ Quixel Asset Downloader is a command-line tool written in .NET that interacts wi
 - Extract all Assets: Automatically extracts downloaded ZIP files for easy access.
 - Flexible Resolution Choices: Download assets in the resolution that fits your project requirements.
 
+## First things first!
+The downloader only works if you have the assets in your quixel account. @ the time of writing this downloader there was a js file created by someone else, which would "automate" the asset adding page by page on the quixel website. This js script can be found in the assets folder.
+### Note: i think you can add all assets to your quixel account with a single click now. So no need for the js script.
+
 ## Installation
 #### Clone or Download the Project:
 - Clone the repository from GitHub:
