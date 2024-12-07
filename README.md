@@ -33,7 +33,7 @@ You can provide both as a command-line argument.
 - Open your everyday browser (i used chrome for this)
 - Goto https://quixel.com/megascans/home
 - Login to your account (also works with en epic account)
-- When you are back on the megascans/home page scroll down to some asset. (if you dont have any assets on your account you must run .... first)
+- When you are back on the megascans/home page scroll down to some asset. (if you dont have any assets on your account you must read "## First things first!")
 - now hit F12 (open developer mode) and select the network tab
 - When you have the networktab opened, click a asset to download. It doesnt matter if you actualy save the file or not.
 - now in the network tab there should be an entry saying "extended", click on it
