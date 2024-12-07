@@ -8,8 +8,11 @@ Quixel Asset Downloader is a command-line tool written in .NET that interacts wi
 - Flexible Resolution Choices: Download assets in the resolution that fits your project requirements.
 
 ## First things first!
-The downloader only works if you have the assets in your quixel account. @ the time of writing this downloader there was a js file created by someone else, which would "automate" the asset adding page by page on the quixel website. This js script can be found in the assets folder.
+The downloader only works if you have the assets in your quixel account. @ the time of writing this downloader there was a js file created by someone else, which would "automate" the asset adding page by page on the quixel website. This js script can be found in the assets folder. Just login to the quixel website, go to the assets pages, (around 95 of them if i remember correctly) and run the js file in the browserconsole.
+
 ### Note: i think you can add all assets to your quixel account with a single click now. So no need for the js script.
+
+
 
 ## Installation
 #### Clone or Download the Project:
@@ -38,14 +41,13 @@ You can provide both as a command-line argument.
 - Copy those values and pass them in the command line.
 - Leave your browser open on that page you are on where you got the tokens. If you close the browser the session will be lost and the tool will not work.
 
+## Requirements
+To download all the quixel megascan assets you need space, and allot of it. I have downloaded every single asset in the highest possible resolution (8K for the most, there are 16K assets also, but you cannot download them) The 18871 assets take up 4,7TB extracted and don't forget the size of the zips before extracting. I have used a 8TB disk and it was full. After deleting the zips there is rougly 3TB left.
 
-
-
-
-Usage
+## Usage
 The tool operates from the command line, and you can provide several arguments to control its behavior.
 
-Command-Line Arguments
+### Command-Line Arguments
 Argument	Description	Example
 -k or --api-key	Quixel API key (optional if set via environment variable).	-k your-api-key
 -r or --resolution	Resolution of the assets to download (2K, 4K, 8K).	-r 4K
@@ -55,102 +57,54 @@ Argument	Description	Example
 -m or --metadata-only	Fetch and save metadata only, without downloading the actual assets.	-m
 -x or --extract	Automatically extract downloaded ZIP files.	-x
 --help	Display help information and available command-line arguments.	--help
-Example Commands
+
+### Example Commands
 Download and Extract Assets with Specific Resolution:
 
-bash
-Copy code
+```bash
 QuixelAssetDownloader.exe -k your-api-key -r 4K -a asset_id_1,asset_id_2 -o C:\Downloads\QuixelAssets -x
+```
 This command downloads the assets asset_id_1 and asset_id_2 in 4K resolution, saves them in the C:\Downloads\QuixelAssets directory, and extracts the downloaded ZIP files.
 
-Fetch Metadata Only (No Downloads):
+### Fetch Metadata Only (No Downloads):
 
-bash
-Copy code
+```bash
 QuixelAssetDownloader.exe -k your-api-key -a asset_id_1 -m -o C:\Metadata
+```
 This command fetches metadata for the asset asset_id_1 and saves it to the C:\Metadata directory without downloading the asset.
 
-List Available Assets:
+### List Available Assets:
 
-bash
-Copy code
+```bash
 QuixelAssetDownloader.exe -k your-api-key -l
+```
 This command lists all the available assets from the Quixel Megascans API using your API key.
 
-Workflow
-Retrieve Metadata:
+## Workflow
 
+### Retrieve Metadata:
 The tool queries the Quixel Megascans API to retrieve asset metadata based on the provided asset IDs.
 This metadata is saved as JSON files in the specified output directory.
-Download Assets:
 
+### Download Assets:
 The tool downloads the asset files in the chosen resolution (e.g., 2K, 4K, 8K).
 Assets are saved as ZIP files in the output directory.
-Extract Assets:
 
+### Extract Assets:
 If the -x or --extract flag is provided, the tool automatically extracts the downloaded ZIP files into their respective folders, making them ready to use.
-Example Code Snippet (VB.NET)
-vb
-Copy code
-Module QuixelAssetDownloader
-    Sub Main(args As String())
-        ' Parse command-line arguments
-        Dim apiKey As String = GetArgument(args, "--api-key", "-k")
-        Dim resolution As String = GetArgument(args, "--resolution", "-r", "4K") ' Default to 4K if not provided
-        Dim assetIds As String = GetArgument(args, "--asset-id", "-a")
-        Dim outputDir As String = GetArgument(args, "--output", "-o", "C:\Downloads")
-        Dim metadataOnly As Boolean = ArgumentExists(args, "--metadata-only", "-m")
-        Dim extract As Boolean = ArgumentExists(args, "--extract", "-x")
-        
-        ' Validate required arguments
-        If String.IsNullOrEmpty(apiKey) Then
-            Console.WriteLine("Error: API Key is required.")
-            Return
-        End If
-        
-        ' Process the asset metadata and downloading
-        Dim downloader As New QuixelDownloader(apiKey, resolution, outputDir)
-        
-        If metadataOnly Then
-            downloader.FetchMetadata(assetIds)
-        Else
-            downloader.DownloadAssets(assetIds, extract)
-        End If
-    End Sub
 
-    ' Function to handle argument parsing
-    Function GetArgument(args As String(), ParamArray options As String()) As String
-        For Each optionStr As String In options
-            Dim index As Integer = Array.IndexOf(args, optionStr)
-            If index <> -1 AndAlso index < args.Length - 1 Then
-                Return args(index + 1)
-            End If
-        Next
-        Return Nothing
-    End Function
-
-    ' Function to check for flag existence
-    Function ArgumentExists(args As String(), ParamArray options As String()) As Boolean
-        For Each optionStr As String In options
-            If Array.IndexOf(args, optionStr) <> -1 Then
-                Return True
-            End If
-        Next
-        Return False
-    End Function
-End Module
-API Key Setup
+### API Key Setup
 You can provide the Quixel Megascans API Key as a command-line argument using -k or --api-key, or you can set it as an environment variable:
 
 Setting the API Key as an Environment Variable:
 On Windows, open the Command Prompt and run the following command:
 
-bash
-Copy code
+```bash
 setx QUIXEL_API_KEY "your-api-key"
+```
 You can then omit the -k argument when running the tool, and it will automatically use the environment variable.
 
-License
+## License
 This project is licensed under the MIT License. Feel free to modify and distribute it as needed.
 
 
