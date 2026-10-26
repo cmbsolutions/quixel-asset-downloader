@@ -1,3 +1,5 @@
+# ***This tool won't work anymore since FAB took over megascans and the megascans downloadservers are gone.***
+
 # Quixel Asset Downloader
 Quixel Asset Downloader is a command-line tool written in .NET that interacts with the Quixel Megascans API to automate the process of gathering metadata, downloading assets in your chosen resolution, and extracting them for use in your projects. This tool simplifies asset management by automating tedious manual tasks, allowing you to quickly and efficiently integrate Quixel Megascans into your workflow.
 
